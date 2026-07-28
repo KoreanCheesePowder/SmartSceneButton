@@ -1,0 +1,119 @@
+local capabilities = require "st.capabilities"
+local ZigbeeDriver = require "st.zigbee"
+local defaults = require "st.zigbee.defaults"
+local clusters = require "st.zigbee.zcl.clusters"
+
+local OnOff = clusters.OnOff
+local PowerConfiguration = clusters.PowerConfiguration
+local wheel_action = capabilities["__WHEEL_CAPABILITY_ID__"]
+local driver_info = capabilities["buildbook37604.driverInformation"]
+
+local function get_body_byte(zb_rx)
+  local body = zb_rx.body.zcl_body.body_bytes
+  if body == nil then return nil end
+  if type(body) == "string" then return string.byte(body, 1) end
+  if body.value ~= nil then return body.value end
+  return tonumber(body)
+end
+
+local function emit_button(device, value)
+  local event = nil
+  if value == 0x00 then
+    event = capabilities.button.button.pushed()
+  elseif value == 0x01 then
+    event = capabilities.button.button.double()
+  elseif value == 0x02 then
+    event = capabilities.button.button.held()
+  end
+
+  if event ~= nil then
+    event.state_change = true
+    device:emit_event(event)
+  end
+end
+
+local function button_handler(driver, device, zb_rx)
+  emit_button(device, get_body_byte(zb_rx))
+end
+
+local function wheel_handler(driver, device, zb_rx)
+  local value = get_body_byte(zb_rx)
+  local event = nil
+
+  -- 실제 장치 로그 기준: 0xFC / 00 = up, 0xFC / 01 = down
+  -- 휠 방향 매핑: 00 = 오른쪽(시계), 01 = 왼쪽(반시계)
+  if value == 0x00 then
+    event = wheel_action.wheelAction("right")
+  elseif value == 0x01 then
+    event = wheel_action.wheelAction("left")
+  end
+
+  if event ~= nil then
+    event.state_change = true
+    device:emit_event(event)
+  end
+end
+
+local function emit_driver_information(device)
+  if driver_info ~= nil then
+    if driver_info.author ~= nil then
+      device:emit_event(driver_info.author("치즈가루"))
+    end
+    if driver_info.driverVersion ~= nil then
+      device:emit_event(driver_info.driverVersion("v1.0.0"))
+    end
+  end
+end
+
+local function device_added(driver, device)
+  device:emit_event(capabilities.button.supportedButtonValues({"pushed", "double", "held"}))
+  device:emit_event(capabilities.button.numberOfButtons({value = 1}))
+  emit_driver_information(device)
+end
+
+local function device_init(driver, device)
+  emit_driver_information(device)
+end
+
+local function do_configure(driver, device)
+  device:configure()
+  device:send(PowerConfiguration.attributes.BatteryPercentageRemaining:read(device))
+  emit_driver_information(device)
+end
+
+local function refresh_handler(driver, device, command)
+  device:send(PowerConfiguration.attributes.BatteryPercentageRemaining:read(device))
+  emit_driver_information(device)
+end
+
+local driver_template = {
+  supported_capabilities = {
+    capabilities.button,
+    capabilities.battery,
+    wheel_action,
+    driver_info,
+    capabilities.refresh
+  },
+  health_check = false,
+  lifecycle_handlers = {
+    added = device_added,
+    init = device_init,
+    doConfigure = do_configure
+  },
+  capability_handlers = {
+    [capabilities.refresh.ID] = {
+      [capabilities.refresh.commands.refresh.NAME] = refresh_handler
+    }
+  },
+  zigbee_handlers = {
+    cluster = {
+      [OnOff.ID] = {
+        [0xFC] = wheel_handler,
+        [0xFD] = button_handler
+      }
+    }
+  }
+}
+
+defaults.register_for_default_handlers(driver_template, {capabilities.battery})
+ZigbeeDriver("C.P WheelButton", driver_template):run()

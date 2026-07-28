@@ -1,0 +1,4 @@
+name: C.P WheelButton
+packageKey: cheesepowder.zigbee-tuya-button-knob
+permissions:
+  zigbee: {}

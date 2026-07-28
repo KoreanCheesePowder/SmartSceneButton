@@ -1,0 +1,44 @@
+{
+  "dashboard": {
+    "states": [
+      {
+        "label": "{{wheelAction.value}}",
+        "alternatives": [
+          {"key": "left", "value": "왼쪽 회전", "type": "active"},
+          {"key": "right", "value": "오른쪽 회전", "type": "active"}
+        ]
+      }
+    ],
+    "actions": [],
+    "basicPlus": []
+  },
+  "detailView": [
+    {
+      "label": "휠",
+      "displayType": "state",
+      "state": {
+        "label": "{{wheelAction.value}}",
+        "alternatives": [
+          {"key": "left", "value": "왼쪽 회전", "type": "active"},
+          {"key": "right", "value": "오른쪽 회전", "type": "active"}
+        ]
+      }
+    }
+  ],
+  "automation": {
+    "conditions": [
+      {
+        "label": "휠",
+        "displayType": "list",
+        "list": {
+          "alternatives": [
+            {"key": "left", "value": "왼쪽 회전"},
+            {"key": "right", "value": "오른쪽 회전"}
+          ],
+          "value": "wheelAction.value"
+        }
+      }
+    ],
+    "actions": []
+  }
+}

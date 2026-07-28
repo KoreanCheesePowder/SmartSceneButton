@@ -1,0 +1,29 @@
+{
+    "id": "buildbook37604.wheelAction",
+    "version": 1,
+    "status": "proposed",
+    "name": "Wheel Action",
+    "ephemeral": false,
+    "attributes": {
+        "wheelAction": {
+            "schema": {
+                "type": "object",
+                "properties": {
+                    "value": {
+                        "type": "string",
+                        "enum": [
+                            "left",
+                            "right"
+                        ]
+                    }
+                },
+                "additionalProperties": false,
+                "required": [
+                    "value"
+                ]
+            },
+            "enumCommands": []
+        }
+    },
+    "commands": {}
+}

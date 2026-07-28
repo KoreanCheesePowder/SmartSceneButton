@@ -1,0 +1,23 @@
+{
+  "id": "wheelAction",
+  "version": 1,
+  "status": "proposed",
+  "name": "Wheel Action",
+  "attributes": {
+    "wheelAction": {
+      "schema": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string",
+            "enum": ["left", "right"]
+          }
+        },
+        "additionalProperties": false,
+        "required": ["value"]
+      },
+      "enumCommands": []
+    }
+  },
+  "commands": {}
+}

@@ -1,0 +1,19 @@
+name: cp-wheel-button
+components:
+  - id: main
+    capabilities:
+      - id: button
+        version: 1
+      - id: battery
+        version: 1
+      - id: buildbook37604.wheelAction
+        version: 1
+      - id: buildbook37604.driverInformation
+        version: 1
+      - id: refresh
+        version: 1
+    categories:
+      - name: RemoteController
+metadata:
+  mnmn: SmartThingsCommunity
+  ocfDeviceType: x.com.st.d.remotecontroller
