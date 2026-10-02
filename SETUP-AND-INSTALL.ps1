@@ -60,7 +60,7 @@ Write-Host "[4/4] Packaging and installing driver" -ForegroundColor Cyan
 Invoke-SmartThings -Arguments @("edge:drivers:package", ".", "--install")
 
 Write-Host "" 
-Write-Host "Installation completed: C.P WheelButton v1.0.0" -ForegroundColor Green
+Write-Host "Installation completed: C.P WheelButton v1.0.1" -ForegroundColor Green
 Write-Host "Author: CheesePowder" -ForegroundColor DarkGray
-Write-Host "Version: v1.0.0" -ForegroundColor DarkGray
+Write-Host "Version: v1.0.1" -ForegroundColor DarkGray
 Write-Host "Open SmartThings, select the wheel button, and change its driver to C.P WheelButton." -ForegroundColor Yellow

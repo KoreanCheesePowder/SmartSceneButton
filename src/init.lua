@@ -2,6 +2,7 @@ local capabilities = require "st.capabilities"
 local ZigbeeDriver = require "st.zigbee"
 local defaults = require "st.zigbee.defaults"
 local clusters = require "st.zigbee.zcl.clusters"
+local log = require "log"
 
 local OnOff = clusters.OnOff
 local PowerConfiguration = clusters.PowerConfiguration
@@ -36,6 +37,13 @@ local function button_handler(driver, device, zb_rx)
   emit_button(device, get_body_byte(zb_rx))
 end
 
+-- Also accept a payload-free standard OnOff Toggle as a single press.
+-- Keep the existing 0xFD payload mapping separate: 0xFD/0x02 means held.
+local function toggle_handler(driver, device, zb_rx)
+  emit_button(device, 0x00)
+  log.info("WheelButton v1.0.1 | OnOff.Toggle -> button=pushed | state_change=true")
+end
+
 local function wheel_handler(driver, device, zb_rx)
   local value = get_body_byte(zb_rx)
   local event = nil
@@ -60,7 +68,7 @@ local function emit_driver_information(device)
       device:emit_event(driver_info.author("치즈가루"))
     end
     if driver_info.driverVersion ~= nil then
-      device:emit_event(driver_info.driverVersion("v1.0.0"))
+      device:emit_event(driver_info.driverVersion("v1.0.1"))
     end
   end
 end
@@ -73,6 +81,7 @@ end
 
 local function device_init(driver, device)
   emit_driver_information(device)
+  log.info("WheelButton v1.0.1 | ready | 0x02=Toggle, 0xFC=wheel, 0xFD=button")
 end
 
 local function do_configure(driver, device)
@@ -108,6 +117,7 @@ local driver_template = {
   zigbee_handlers = {
     cluster = {
       [OnOff.ID] = {
+        [0x02] = toggle_handler,
         [0xFC] = wheel_handler,
         [0xFD] = button_handler
       }

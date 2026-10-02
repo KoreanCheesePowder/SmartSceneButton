@@ -1,0 +1,29 @@
+C.P WheelButton v1.0.1 - Local Validation
+
+Lua syntax check (src and template): PASS
+Rendered template equals src/init.lua: PASS
+Package key, profile, fingerprints and capability definitions: byte-for-byte unchanged
+Windows updater: inspected, not executed on Windows
+SmartThings CLI packaging/installation: not executed in this environment
+Physical device, hub, cloud, mobile UI and routine execution: not tested
+
+PASS: driver identity, battery defaults, capability set unchanged
+PASS: only Toggle, legacy button, and legacy wheel commands registered
+PASS: observed payload-free Toggle emits exactly one pushed event
+PASS: three separate Toggle presses each emit state_change=true
+PASS: legacy 0xFD/string payload 0 -> pushed
+PASS: legacy 0xFD/string payload 1 -> double
+PASS: legacy 0xFD/string payload 2 -> held
+PASS: legacy 0xFC/string payload 0 -> right
+PASS: legacy 0xFC/string payload 1 -> left
+PASS: legacy wrapped body.value payload retained
+PASS: unknown, missing, and empty legacy payloads generate no events
+PASS: On and Off are not guessed to be button actions
+PASS: Toggle command 0x02 remains distinct from held payload 0xFD/0x02
+PASS: emission failure does not print a false success log
+PASS: init reports v1.0.1 without emitting a button press
+PASS: added retains three supported button values and one button
+PASS: configure still only configures device and reads battery
+PASS: refresh still only reads battery and updates driver information
+RESULT: 18/18 passed
+Scope: Lua syntax and mocked driver logic. NOT a real SmartThings SDK/hub/UI/routine test.

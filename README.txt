@@ -1,22 +1,29 @@
-C.P WheelButton v1.0.0
+﻿C.P WheelButton v1.0.1
 
-설치:
-1. 압축을 풉니다.
-2. SETUP-AND-INSTALL.cmd를 실행합니다.
-3. SmartThings 앱을 완전히 종료한 뒤 다시 실행합니다.
-4. 기존 휠 버튼에서 드라이버 변경으로 C.P WheelButton을 선택합니다.
+기존 사용자 업데이트:
+1. 압축을 새 폴더에 풀고 UPDATE-ONLY.cmd를 실행합니다.
+2. 기존 설치 때 사용한 계정, 채널, 허브를 사용합니다.
+3. 상세정보 또는 로그캣에서 v1.0.1을 확인한 뒤 버튼을 한 번 누릅니다.
+4. 기존 디바이스와 루틴은 삭제하지 마세요. 재페어링하지 않습니다.
 
-지원 동작:
-- 1회 클릭: pushed
-- 2회 클릭: double
-- 길게 누름: held
-- 오른쪽 회전: right
-- 왼쪽 회전: left
-- 배터리
+수정 내용:
+- OnOff Toggle (cluster 0x0006, command 0x02) -> button.pushed
+- 반복 누름에도 state_change=true 유지
+- 기존 0xFD 누름, 0xFC 회전 처리 유지
+- 프로필, 능력 ID, 화면 정의, packageKey 변경 없음
+- src/init.lua와 templates/init.lua.template 동시 수정
 
-Driver Information:
-- 제작자: 치즈가루
-- 버전: v1.0.0
+한 번 누름 이벤트 전송 로그:
+WheelButton v1.0.1 | OnOff.Toggle -> button=pushed | state_change=true
 
-packageKey:
-cheesepowder.zigbee-tuya-button-knob
+확인 범위:
+로컬 Lua 모의 테스트와 기존 파일 비교로 검증합니다.
+실제 허브, 앱 표시, 루틴 실행은 설치 후 확인해야 합니다.
+장치 모드를 변경하는 명령은 추가하지 않았습니다.
+새로운 패킷으로 전송되는 회전이나 다른 누름은 별도 확인이 필요합니다.
+
+신규 설치용 SETUP-AND-INSTALL.cmd도 포함되어 있으나, 이번 업데이트에는 UPDATE-ONLY.cmd를 사용하세요.
+
+제작자: 치즈가루
+버전: v1.0.1
+packageKey: cheesepowder.zigbee-tuya-button-knob
