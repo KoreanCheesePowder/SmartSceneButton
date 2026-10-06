@@ -1,0 +1,744 @@
+[
+    {
+        "id": "buildbook37604.busanApiKey",
+        "version": 1,
+        "status": "proposed",
+        "ephemeral": false,
+        "namespace": "buildbook37604"
+    },
+    {
+        "id": "buildbook37604.busanGasDetail",
+        "version": 1,
+        "status": "proposed",
+        "ephemeral": false,
+        "namespace": "buildbook37604"
+    },
+    {
+        "id": "buildbook37604.busanGasInfo",
+        "version": 1,
+        "status": "proposed",
+        "ephemeral": false,
+        "namespace": "buildbook37604"
+    },
+    {
+        "id": "buildbook37604.busanGasNavigator",
+        "version": 1,
+        "status": "proposed",
+        "ephemeral": false,
+        "namespace": "buildbook37604"
+    },
+    {
+        "id": "buildbook37604.busanGasSummary",
+        "version": 1,
+        "status": "proposed",
+        "ephemeral": false,
+        "namespace": "buildbook37604"
+    },
+    {
+        "id": "buildbook37604.busanGasSync",
+        "version": 1,
+        "status": "proposed",
+        "ephemeral": false,
+        "namespace": "buildbook37604"
+    },
+    {
+        "id": "buildbook37604.busArrival",
+        "version": 1,
+        "status": "proposed",
+        "ephemeral": false,
+        "namespace": "buildbook37604"
+    },
+    {
+        "id": "buildbook37604.busDelete",
+        "version": 1,
+        "status": "proposed",
+        "ephemeral": false,
+        "namespace": "buildbook37604"
+    },
+    {
+        "id": "buildbook37604.busDriverInfo",
+        "version": 1,
+        "status": "proposed",
+        "ephemeral": false,
+        "namespace": "buildbook37604"
+    },
+    {
+        "id": "buildbook37604.busRouteRegistration",
+        "version": 1,
+        "status": "proposed",
+        "ephemeral": false,
+        "namespace": "buildbook37604"
+    },
+    {
+        "id": "buildbook37604.busStopInfo",
+        "version": 1,
+        "status": "proposed",
+        "ephemeral": false,
+        "namespace": "buildbook37604"
+    },
+    {
+        "id": "buildbook37604.busStopRegistration",
+        "version": 1,
+        "status": "proposed",
+        "ephemeral": false,
+        "namespace": "buildbook37604"
+    },
+    {
+        "id": "buildbook37604.busUpdated",
+        "version": 1,
+        "status": "proposed",
+        "ephemeral": false,
+        "namespace": "buildbook37604"
+    },
+    {
+        "id": "buildbook37604.cheesegaruActualAssets",
+        "version": 1,
+        "status": "proposed",
+        "ephemeral": false,
+        "namespace": "buildbook37604"
+    },
+    {
+        "id": "buildbook37604.cheesegaruAi",
+        "version": 1,
+        "status": "proposed",
+        "ephemeral": false,
+        "namespace": "buildbook37604"
+    },
+    {
+        "id": "buildbook37604.cheesegaruInfo",
+        "version": 1,
+        "status": "proposed",
+        "ephemeral": false,
+        "namespace": "buildbook37604"
+    },
+    {
+        "id": "buildbook37604.cheesegaruRefresh",
+        "version": 1,
+        "status": "proposed",
+        "ephemeral": false,
+        "namespace": "buildbook37604"
+    },
+    {
+        "id": "buildbook37604.cheesegaruStatus",
+        "version": 1,
+        "status": "proposed",
+        "ephemeral": false,
+        "namespace": "buildbook37604"
+    },
+    {
+        "id": "buildbook37604.cheesegaruSummary",
+        "version": 1,
+        "status": "proposed",
+        "ephemeral": false,
+        "namespace": "buildbook37604"
+    },
+    {
+        "id": "buildbook37604.cheesegaruTestAssets",
+        "version": 1,
+        "status": "proposed",
+        "ephemeral": false,
+        "namespace": "buildbook37604"
+    },
+    {
+        "id": "buildbook37604.cpTemperatureHumidityHistory",
+        "version": 1,
+        "status": "proposed",
+        "ephemeral": false,
+        "namespace": "buildbook37604"
+    },
+    {
+        "id": "buildbook37604.currentPhoneDelete",
+        "version": 1,
+        "status": "proposed",
+        "ephemeral": false,
+        "namespace": "buildbook37604"
+    },
+    {
+        "id": "buildbook37604.doorPresenceStatus",
+        "version": 1,
+        "status": "proposed",
+        "ephemeral": false,
+        "namespace": "buildbook37604"
+    },
+    {
+        "id": "buildbook37604.doorProximity",
+        "version": 1,
+        "status": "proposed",
+        "ephemeral": false,
+        "namespace": "buildbook37604"
+    },
+    {
+        "id": "buildbook37604.driverInformation",
+        "version": 1,
+        "status": "proposed",
+        "ephemeral": false,
+        "namespace": "buildbook37604"
+    },
+    {
+        "id": "buildbook37604.eatonUpsGatewaySyncV2",
+        "version": 1,
+        "status": "proposed",
+        "ephemeral": false,
+        "namespace": "buildbook37604"
+    },
+    {
+        "id": "buildbook37604.eatonupsinfov294",
+        "version": 1,
+        "status": "proposed",
+        "ephemeral": false,
+        "namespace": "buildbook37604"
+    },
+    {
+        "id": "buildbook37604.eatonupsinfov295",
+        "version": 1,
+        "status": "proposed",
+        "ephemeral": false,
+        "namespace": "buildbook37604"
+    },
+    {
+        "id": "buildbook37604.eatonUpsLoad",
+        "version": 1,
+        "status": "proposed",
+        "ephemeral": false,
+        "namespace": "buildbook37604"
+    },
+    {
+        "id": "buildbook37604.eatonupsloadv294",
+        "version": 1,
+        "status": "proposed",
+        "ephemeral": false,
+        "namespace": "buildbook37604"
+    },
+    {
+        "id": "buildbook37604.eatonupsloadv295",
+        "version": 1,
+        "status": "proposed",
+        "ephemeral": false,
+        "namespace": "buildbook37604"
+    },
+    {
+        "id": "buildbook37604.eatonUpsMetricsV2",
+        "version": 1,
+        "status": "proposed",
+        "ephemeral": false,
+        "namespace": "buildbook37604"
+    },
+    {
+        "id": "buildbook37604.eatonUpsPowerState",
+        "version": 1,
+        "status": "proposed",
+        "ephemeral": false,
+        "namespace": "buildbook37604"
+    },
+    {
+        "id": "buildbook37604.eatonUpsPushReceiver",
+        "version": 1,
+        "status": "proposed",
+        "ephemeral": false,
+        "namespace": "buildbook37604"
+    },
+    {
+        "id": "buildbook37604.eatonupsruntimev294",
+        "version": 1,
+        "status": "proposed",
+        "ephemeral": false,
+        "namespace": "buildbook37604"
+    },
+    {
+        "id": "buildbook37604.eatonupsruntimev295",
+        "version": 1,
+        "status": "proposed",
+        "ephemeral": false,
+        "namespace": "buildbook37604"
+    },
+    {
+        "id": "buildbook37604.eatonUpsStatus",
+        "version": 1,
+        "status": "proposed",
+        "ephemeral": false,
+        "namespace": "buildbook37604"
+    },
+    {
+        "id": "buildbook37604.eatonupssummaryv294",
+        "version": 1,
+        "status": "proposed",
+        "ephemeral": false,
+        "namespace": "buildbook37604"
+    },
+    {
+        "id": "buildbook37604.eatonupssummaryv295",
+        "version": 1,
+        "status": "proposed",
+        "ephemeral": false,
+        "namespace": "buildbook37604"
+    },
+    {
+        "id": "buildbook37604.elevatorCall",
+        "version": 1,
+        "status": "proposed",
+        "ephemeral": false,
+        "namespace": "buildbook37604"
+    },
+    {
+        "id": "buildbook37604.elevatorcallactionv112",
+        "version": 1,
+        "status": "proposed",
+        "ephemeral": false,
+        "namespace": "buildbook37604"
+    },
+    {
+        "id": "buildbook37604.elevatorCallButton",
+        "version": 1,
+        "status": "proposed",
+        "ephemeral": false,
+        "namespace": "buildbook37604"
+    },
+    {
+        "id": "buildbook37604.elevatorcallv100",
+        "version": 1,
+        "status": "proposed",
+        "ephemeral": false,
+        "namespace": "buildbook37604"
+    },
+    {
+        "id": "buildbook37604.elevatorCallV101",
+        "version": 1,
+        "status": "proposed",
+        "ephemeral": false,
+        "namespace": "buildbook37604"
+    },
+    {
+        "id": "buildbook37604.elevatorfloorv112",
+        "version": 1,
+        "status": "proposed",
+        "ephemeral": false,
+        "namespace": "buildbook37604"
+    },
+    {
+        "id": "buildbook37604.elevatorfloorv113",
+        "version": 1,
+        "status": "proposed",
+        "ephemeral": false,
+        "namespace": "buildbook37604"
+    },
+    {
+        "id": "buildbook37604.elevatorinfov100",
+        "version": 1,
+        "status": "proposed",
+        "ephemeral": false,
+        "namespace": "buildbook37604"
+    },
+    {
+        "id": "buildbook37604.elevatorMonitor",
+        "version": 1,
+        "status": "proposed",
+        "ephemeral": false,
+        "namespace": "buildbook37604"
+    },
+    {
+        "id": "buildbook37604.elevatorMonitorV104",
+        "version": 1,
+        "status": "proposed",
+        "ephemeral": false,
+        "namespace": "buildbook37604"
+    },
+    {
+        "id": "buildbook37604.elevatorMonitorV105",
+        "version": 1,
+        "status": "proposed",
+        "ephemeral": false,
+        "namespace": "buildbook37604"
+    },
+    {
+        "id": "buildbook37604.elevatorMonitorV106",
+        "version": 1,
+        "status": "proposed",
+        "ephemeral": false,
+        "namespace": "buildbook37604"
+    },
+    {
+        "id": "buildbook37604.elevatormotionv112",
+        "version": 1,
+        "status": "proposed",
+        "ephemeral": false,
+        "namespace": "buildbook37604"
+    },
+    {
+        "id": "buildbook37604.elevatormotionv113",
+        "version": 1,
+        "status": "proposed",
+        "ephemeral": false,
+        "namespace": "buildbook37604"
+    },
+    {
+        "id": "buildbook37604.elevatorStatus",
+        "version": 1,
+        "status": "proposed",
+        "ephemeral": false,
+        "namespace": "buildbook37604"
+    },
+    {
+        "id": "buildbook37604.elevatorstatusv100",
+        "version": 1,
+        "status": "proposed",
+        "ephemeral": false,
+        "namespace": "buildbook37604"
+    },
+    {
+        "id": "buildbook37604.elevatorsummaryv100",
+        "version": 1,
+        "status": "proposed",
+        "ephemeral": false,
+        "namespace": "buildbook37604"
+    },
+    {
+        "id": "buildbook37604.elevatorUpdatedAtV106",
+        "version": 1,
+        "status": "proposed",
+        "ephemeral": false,
+        "namespace": "buildbook37604"
+    },
+    {
+        "id": "buildbook37604.hntCommonDoorControlV100",
+        "version": 1,
+        "status": "proposed",
+        "ephemeral": false,
+        "namespace": "buildbook37604"
+    },
+    {
+        "id": "buildbook37604.hntCommonDoorInfoV100",
+        "version": 1,
+        "status": "proposed",
+        "ephemeral": false,
+        "namespace": "buildbook37604"
+    },
+    {
+        "id": "buildbook37604.hntDoorControlV100",
+        "version": 1,
+        "status": "proposed",
+        "ephemeral": false,
+        "namespace": "buildbook37604"
+    },
+    {
+        "id": "buildbook37604.hntDoorControlV103",
+        "version": 1,
+        "status": "proposed",
+        "ephemeral": false,
+        "namespace": "buildbook37604"
+    },
+    {
+        "id": "buildbook37604.hntDoorControlV104",
+        "version": 1,
+        "status": "proposed",
+        "ephemeral": false,
+        "namespace": "buildbook37604"
+    },
+    {
+        "id": "buildbook37604.hntDoorControlV110",
+        "version": 1,
+        "status": "proposed",
+        "ephemeral": false,
+        "namespace": "buildbook37604"
+    },
+    {
+        "id": "buildbook37604.hntDoorInfoV100",
+        "version": 1,
+        "status": "proposed",
+        "ephemeral": false,
+        "namespace": "buildbook37604"
+    },
+    {
+        "id": "buildbook37604.hntDoorInfoV103",
+        "version": 1,
+        "status": "proposed",
+        "ephemeral": false,
+        "namespace": "buildbook37604"
+    },
+    {
+        "id": "buildbook37604.hntDoorInfoV104",
+        "version": 1,
+        "status": "proposed",
+        "ephemeral": false,
+        "namespace": "buildbook37604"
+    },
+    {
+        "id": "buildbook37604.hntElevatorArrivalV120",
+        "version": 1,
+        "status": "proposed",
+        "ephemeral": false,
+        "namespace": "buildbook37604"
+    },
+    {
+        "id": "buildbook37604.hntElevatorCallV100",
+        "version": 1,
+        "status": "proposed",
+        "ephemeral": false,
+        "namespace": "buildbook37604"
+    },
+    {
+        "id": "buildbook37604.hntElevatorCallV110",
+        "version": 1,
+        "status": "proposed",
+        "ephemeral": false,
+        "namespace": "buildbook37604"
+    },
+    {
+        "id": "buildbook37604.hntElevatorHistoryV127",
+        "version": 1,
+        "status": "proposed",
+        "ephemeral": false,
+        "namespace": "buildbook37604"
+    },
+    {
+        "id": "buildbook37604.hntElevatorInfoV100",
+        "version": 1,
+        "status": "proposed",
+        "ephemeral": false,
+        "namespace": "buildbook37604"
+    },
+    {
+        "id": "buildbook37604.hntElevatorStatusV100",
+        "version": 1,
+        "status": "proposed",
+        "ephemeral": false,
+        "namespace": "buildbook37604"
+    },
+    {
+        "id": "buildbook37604.hntHeatingInfoV100",
+        "version": 1,
+        "status": "proposed",
+        "ephemeral": false,
+        "namespace": "buildbook37604"
+    },
+    {
+        "id": "buildbook37604.hntHeatingModeV100",
+        "version": 1,
+        "status": "proposed",
+        "ephemeral": false,
+        "namespace": "buildbook37604"
+    },
+    {
+        "id": "buildbook37604.hntHeatingSummaryV107",
+        "version": 1,
+        "status": "proposed",
+        "ephemeral": false,
+        "namespace": "buildbook37604"
+    },
+    {
+        "id": "buildbook37604.hntHeatingSummaryV109",
+        "version": 1,
+        "status": "proposed",
+        "ephemeral": false,
+        "namespace": "buildbook37604"
+    },
+    {
+        "id": "buildbook37604.hntHeatingSummaryV113",
+        "version": 1,
+        "status": "proposed",
+        "ephemeral": false,
+        "namespace": "buildbook37604"
+    },
+    {
+        "id": "buildbook37604.hntLightControlV100",
+        "version": 1,
+        "status": "proposed",
+        "ephemeral": false,
+        "namespace": "buildbook37604"
+    },
+    {
+        "id": "buildbook37604.hntLightInfoV100",
+        "version": 1,
+        "status": "proposed",
+        "ephemeral": false,
+        "namespace": "buildbook37604"
+    },
+    {
+        "id": "buildbook37604.hntVentilationInfoV100",
+        "version": 1,
+        "status": "proposed",
+        "ephemeral": false,
+        "namespace": "buildbook37604"
+    },
+    {
+        "id": "buildbook37604.hntVentilationModeV100",
+        "version": 1,
+        "status": "proposed",
+        "ephemeral": false,
+        "namespace": "buildbook37604"
+    },
+    {
+        "id": "buildbook37604.hntVentilationModeV101",
+        "version": 1,
+        "status": "proposed",
+        "ephemeral": false,
+        "namespace": "buildbook37604"
+    },
+    {
+        "id": "buildbook37604.hntVentilationModeV102",
+        "version": 1,
+        "status": "proposed",
+        "ephemeral": false,
+        "namespace": "buildbook37604"
+    },
+    {
+        "id": "buildbook37604.motionDriverInformation",
+        "version": 1,
+        "status": "proposed",
+        "ephemeral": false,
+        "namespace": "buildbook37604"
+    },
+    {
+        "id": "buildbook37604.motionHoldTime",
+        "version": 1,
+        "status": "proposed",
+        "ephemeral": false,
+        "namespace": "buildbook37604"
+    },
+    {
+        "id": "buildbook37604.phoneGpsInfo",
+        "version": 1,
+        "status": "proposed",
+        "ephemeral": false,
+        "namespace": "buildbook37604"
+    },
+    {
+        "id": "buildbook37604.phoneGpsLocation",
+        "version": 1,
+        "status": "proposed",
+        "ephemeral": false,
+        "namespace": "buildbook37604"
+    },
+    {
+        "id": "buildbook37604.phoneGpsSummary",
+        "version": 1,
+        "status": "proposed",
+        "ephemeral": false,
+        "namespace": "buildbook37604"
+    },
+    {
+        "id": "buildbook37604.phonePairing",
+        "version": 1,
+        "status": "proposed",
+        "ephemeral": false,
+        "namespace": "buildbook37604"
+    },
+    {
+        "id": "buildbook37604.registeredPhones",
+        "version": 1,
+        "status": "proposed",
+        "ephemeral": false,
+        "namespace": "buildbook37604"
+    },
+    {
+        "id": "buildbook37604.synologydriverstatusv110",
+        "version": 1,
+        "status": "proposed",
+        "ephemeral": false,
+        "namespace": "buildbook37604"
+    },
+    {
+        "id": "buildbook37604.synologydriverstatusv111",
+        "version": 1,
+        "status": "proposed",
+        "ephemeral": false,
+        "namespace": "buildbook37604"
+    },
+    {
+        "id": "buildbook37604.upsRuntime",
+        "version": 1,
+        "status": "proposed",
+        "ephemeral": false,
+        "namespace": "buildbook37604"
+    },
+    {
+        "id": "buildbook37604.vehicleArrival",
+        "version": 1,
+        "status": "proposed",
+        "ephemeral": false,
+        "namespace": "buildbook37604"
+    },
+    {
+        "id": "buildbook37604.vehicleArrivalEntry",
+        "version": 1,
+        "status": "proposed",
+        "ephemeral": false,
+        "namespace": "buildbook37604"
+    },
+    {
+        "id": "buildbook37604.vehicleArrivalEntryTrigger",
+        "version": 1,
+        "status": "proposed",
+        "ephemeral": false,
+        "namespace": "buildbook37604"
+    },
+    {
+        "id": "buildbook37604.vehicleArrivalExit",
+        "version": 1,
+        "status": "proposed",
+        "ephemeral": false,
+        "namespace": "buildbook37604"
+    },
+    {
+        "id": "buildbook37604.vehicleArrivalExitTrigger",
+        "version": 1,
+        "status": "proposed",
+        "ephemeral": false,
+        "namespace": "buildbook37604"
+    },
+    {
+        "id": "buildbook37604.vehicleArrivalLatestEvent",
+        "version": 1,
+        "status": "proposed",
+        "ephemeral": false,
+        "namespace": "buildbook37604"
+    },
+    {
+        "id": "buildbook37604.vehicleArrivalRoutine",
+        "version": 1,
+        "status": "proposed",
+        "ephemeral": false,
+        "namespace": "buildbook37604"
+    },
+    {
+        "id": "buildbook37604.vehicleArrivalSummary",
+        "version": 1,
+        "status": "proposed",
+        "ephemeral": false,
+        "namespace": "buildbook37604"
+    },
+    {
+        "id": "buildbook37604.vehicleArrivalTrigger",
+        "version": 1,
+        "status": "proposed",
+        "ephemeral": false,
+        "namespace": "buildbook37604"
+    },
+    {
+        "id": "buildbook37604.wallpadCheckedV102",
+        "version": 1,
+        "status": "proposed",
+        "ephemeral": false,
+        "namespace": "buildbook37604"
+    },
+    {
+        "id": "buildbook37604.wallpadStatusV102",
+        "version": 1,
+        "status": "proposed",
+        "ephemeral": false,
+        "namespace": "buildbook37604"
+    },
+    {
+        "id": "buildbook37604.wallpadSummaryV102",
+        "version": 1,
+        "status": "proposed",
+        "ephemeral": false,
+        "namespace": "buildbook37604"
+    },
+    {
+        "id": "buildbook37604.wheelAction",
+        "version": 1,
+        "status": "proposed",
+        "ephemeral": false,
+        "namespace": "buildbook37604"
+    }
+]

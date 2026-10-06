@@ -41,7 +41,7 @@ end
 -- Keep the existing 0xFD payload mapping separate: 0xFD/0x02 means held.
 local function toggle_handler(driver, device, zb_rx)
   emit_button(device, 0x00)
-  log.info("WheelButton v1.0.1 | OnOff.Toggle -> button=pushed | state_change=true")
+  log.info("WheelButton v1.0.2 | OnOff.Toggle -> button=pushed | state_change=true")
 end
 
 local function wheel_handler(driver, device, zb_rx)
@@ -68,7 +68,7 @@ local function emit_driver_information(device)
       device:emit_event(driver_info.author("치즈가루"))
     end
     if driver_info.driverVersion ~= nil then
-      device:emit_event(driver_info.driverVersion("v1.0.1"))
+      device:emit_event(driver_info.driverVersion("v1.0.2"))
     end
   end
 end
@@ -81,7 +81,7 @@ end
 
 local function device_init(driver, device)
   emit_driver_information(device)
-  log.info("WheelButton v1.0.1 | ready | 0x02=Toggle, 0xFC=wheel, 0xFD=button")
+  log.info("WheelButton v1.0.2 | ready | 0x02=Toggle, 0xFC=wheel, 0xFD=button")
 end
 
 local function do_configure(driver, device)

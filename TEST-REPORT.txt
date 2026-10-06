@@ -1,4 +1,4 @@
-C.P WheelButton v1.0.1 - Local Validation
+C.P WheelButton v1.0.2 - Local Validation
 
 Lua syntax check (src and template): PASS
 Rendered template equals src/init.lua: PASS
@@ -21,7 +21,7 @@ PASS: unknown, missing, and empty legacy payloads generate no events
 PASS: On and Off are not guessed to be button actions
 PASS: Toggle command 0x02 remains distinct from held payload 0xFD/0x02
 PASS: emission failure does not print a false success log
-PASS: init reports v1.0.1 without emitting a button press
+PASS: init reports v1.0.2 without emitting a button press
 PASS: added retains three supported button values and one button
 PASS: configure still only configures device and reads battery
 PASS: refresh still only reads battery and updates driver information
