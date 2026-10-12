@@ -51,6 +51,11 @@ $profile = $profileTemplate.Replace("__WHEEL_CAPABILITY_ID__", $wheelCapabilityI
 [System.IO.Directory]::CreateDirectory((Join-Path $PSScriptRoot "profiles")) | Out-Null
 [System.IO.File]::WriteAllText((Join-Path $PSScriptRoot "profiles\cp-wheel-button.yml"), $profile, $utf8NoBom)
 
+# v1.0.5 profile has exactly the original capabilities plus separate wheel thresholds.
+$profileV105Template = Get-Content "templates\cp-wheel-button-v105.yml.template" -Raw -Encoding UTF8
+$profileV105 = $profileV105Template.Replace("__WHEEL_CAPABILITY_ID__", $wheelCapabilityId)
+[System.IO.File]::WriteAllText((Join-Path $PSScriptRoot "profiles\cp-wheel-button-v105.yml"), $profileV105, $utf8NoBom)
+
 $luaTemplate = Get-Content "templates\init.lua.template" -Raw -Encoding UTF8
 $lua = $luaTemplate.Replace("__WHEEL_CAPABILITY_ID__", $wheelCapabilityId)
 [System.IO.Directory]::CreateDirectory((Join-Path $PSScriptRoot "src")) | Out-Null
@@ -60,7 +65,7 @@ Write-Host "[4/4] Packaging and installing driver" -ForegroundColor Cyan
 Invoke-SmartThings -Arguments @("edge:drivers:package", ".", "--install")
 
 Write-Host "" 
-Write-Host "Installation completed: C.P WheelButton v1.0.4" -ForegroundColor Green
+Write-Host "Installation completed: C.P WheelButton v1.0.5" -ForegroundColor Green
 Write-Host "Author: CheesePowder" -ForegroundColor DarkGray
-Write-Host "Version: v1.0.4" -ForegroundColor DarkGray
+Write-Host "Version: v1.0.5" -ForegroundColor DarkGray
 Write-Host "Open SmartThings, select the wheel button, and change its driver to C.P WheelButton." -ForegroundColor Yellow

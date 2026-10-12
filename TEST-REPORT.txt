@@ -1,17 +1,33 @@
-C.P WheelButton v1.0.4 - Local Validation
+C.P WheelButton v1.0.5 - Local Validation (offline)
 
-Mock Lua checks: 31 PASS (texlua)
+Lua mock behavioral tests: PASS 50/50 (texlua)
+- Level.Step UP / DOWN received, 5th packet emits wheelAction and button history
+- 1st through 4th right packets do not emit either event
+- Separate settings accepted (right=3, left=2); both independently gated
+- Each trigger resets the count for the next N packets
+- Change of direction resets the previous partial sequence
+- 3-second idle gap resets the current partial sequence
+- OnOff.Toggle and OnOff.0xFD pushed/double/held behavior preserved
+- Button events reset pending rotation counts
+- Legacy OnOff.0xFC wheel packets use the same thresholds
+- Settings changes reset unfinished counts and take effect immediately
+- Inputs outside 1..20 are defensively clamped
+- Existing devices request the new preferences profile only once
+- Devices with current preferences do not request a profile migration
 
-Code checks:
-- packageKey, fingerprint, device profile, custom capabilities unchanged
-- init.lua template substitution matches src/init.lua
-- Level.Step UP(0) / DOWN(1) handled
-- Legacy OnOff.0xFC wheel handling retained
-- OnOff.Toggle/0xFD button handling retained
-- wheelAction emits a state-change event per rotation
-- standard button up/down emits a state-change event per rotation
-- history event explicitly marked displayed=true
-- supportedButtonValues includes pushed/double/held/up/down
+Static checks: PASS
+- YAML profiles parsed; integer preferences 1..20 default 5 each
+- Original components, capability IDs and metadata identical in both profiles
+- Six fingerprints preserved, target profile updated for new joins
+- Unchanged packageKey: cheesepowder.zigbee-tuya-button-knob
+- Embedded templates match generated Lua and YAML files
+- Custom capability JSON and presentation unchanged
 
-Physical hub, app history, and SmartThings routines cannot be tested offline.
-Mobile activity history may update with a delay (5 to 10 minutes).
+NOT TESTED HERE:
+- SmartThings CLI packaging/upload to account or hub (CLI not available)
+- Actual TS004F knob packet-to-physical-detent ratio
+- Existing device metadata migration reflected in SmartThings app Settings
+- Actual SmartThings history, automation/routine execution and state migration
+
+The ZIP includes the original v1.0.4 behavior other than gating of
+wheelAction/right/left and button up/down rotation events by user thresholds.

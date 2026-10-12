@@ -1,0 +1,38 @@
+name: cp-wheel-button-v105
+components:
+  - id: main
+    capabilities:
+      - id: button
+        version: 1
+      - id: battery
+        version: 1
+      - id: __WHEEL_CAPABILITY_ID__
+        version: 1
+      - id: buildbook37604.driverInformation
+        version: 1
+      - id: refresh
+        version: 1
+    categories:
+      - name: RemoteController
+metadata:
+  mnmn: SmartThingsCommunity
+  ocfDeviceType: x.com.st.d.remotecontroller
+preferences:
+  - title: "오른쪽 회전 루틴 실행 횟수"
+    name: rightWheelCount
+    description: "연속 오른쪽 회전이 이 횟수에 도달하면 루틴 실행 (1~20회)"
+    required: false
+    preferenceType: integer
+    definition:
+      minimum: 1
+      maximum: 20
+      default: 5
+  - title: "왼쪽 회전 루틴 실행 횟수"
+    name: leftWheelCount
+    description: "연속 왼쪽 회전이 이 횟수에 도달하면 루틴 실행 (1~20회)"
+    required: false
+    preferenceType: integer
+    definition:
+      minimum: 1
+      maximum: 20
+      default: 5

@@ -10,6 +10,52 @@ local PowerConfiguration = clusters.PowerConfiguration
 local wheel_action = capabilities["buildbook37604.wheelAction"]
 local driver_info = capabilities["buildbook37604.driverInformation"]
 
+-- Count consecutive *received rotation packets* (not step_size).
+-- 3 seconds of inactivity, a direction change or a click starts a new sequence.
+local ROTATION_IDLE_RESET_SECONDS = 3
+local DEFAULT_ROTATION_COUNT = 5
+local FIELD_ROTATION_DIRECTION = "cp_rotation_direction"
+local FIELD_ROTATION_COUNT = "cp_rotation_count"
+local FIELD_ROTATION_LAST_AT = "cp_rotation_last_at"
+local SETTINGS_PROFILE = "cp-wheel-button-v105"
+local SETTINGS_MIGRATION_FIELD = "cp_wheel_v105_settings_profile_requested"
+
+local function reset_rotation_sequence(device)
+  device:set_field(FIELD_ROTATION_DIRECTION, nil)
+  device:set_field(FIELD_ROTATION_COUNT, 0)
+  device:set_field(FIELD_ROTATION_LAST_AT, nil)
+end
+
+local function required_rotation_count(device, direction)
+  local preferences = device.preferences or {}
+  local key = direction == "right" and "rightWheelCount" or "leftWheelCount"
+  local n = tonumber(preferences[key]) or DEFAULT_ROTATION_COUNT
+  return math.max(1, math.min(20, math.floor(n)))
+end
+
+-- Older paired devices can retain their original profile after a driver update.
+-- Switch them to the compatible preferences-enabled profile without re-pairing.
+-- The new profile has exactly the same components and capability IDs.
+local function ensure_settings_profile(device)
+  if device:get_field(SETTINGS_MIGRATION_FIELD) then return end
+
+  local preferences = device.preferences or {}
+  if preferences.rightWheelCount ~= nil and preferences.leftWheelCount ~= nil then
+    device:set_field(SETTINGS_MIGRATION_FIELD, true, { persist = true })
+    return
+  end
+
+  local ok, err = pcall(function()
+    device:try_update_metadata({ profile = SETTINGS_PROFILE })
+  end)
+  if ok then
+    device:set_field(SETTINGS_MIGRATION_FIELD, true, { persist = true })
+    log.info("WheelButton v1.0.5 | requested device profile " .. SETTINGS_PROFILE .. " for Settings")
+  else
+    log.warn("WheelButton v1.0.5 | settings profile update failed: " .. tostring(err))
+  end
+end
+
 local function get_body_byte(zb_rx)
   local body = zb_rx.body.zcl_body.body_bytes
   if body == nil then return nil end
@@ -29,6 +75,7 @@ local function emit_button(device, value)
   end
 
   if event ~= nil then
+    reset_rotation_sequence(device)
     event.state_change = true
     device:emit_event(event)
   end
@@ -42,13 +89,12 @@ end
 -- Keep the existing 0xFD payload mapping separate: 0xFD/0x02 means held.
 local function toggle_handler(driver, device, zb_rx)
   emit_button(device, 0x00)
-  log.info("WheelButton v1.0.4 | OnOff.Toggle -> button=pushed | state_change=true")
+  log.info("WheelButton v1.0.5 | OnOff.Toggle -> button=pushed | state_change=true")
 end
 
--- Keep the existing custom Wheel Action state/automation, and additionally
--- send a stock Button up/down event so rotation is visible in device history.
--- Right = up, Left = down. This changes the last displayed Button state after
--- rotation, but does not emit pushed/double/held or change their routines.
+-- Emit Wheel Action and its existing standard-button history event only after
+-- the selected number of consecutive rotation packets has been received.
+-- Right = up; left = down (unchanged from v1.0.4).
 local function emit_wheel(device, direction, source)
   local wheel_event = wheel_action.wheelAction(direction)
   wheel_event.state_change = true
@@ -59,7 +105,34 @@ local function emit_wheel(device, direction, source)
   history_event.state_change = true
   history_event.visibility = { displayed = true }
   device:emit_event(history_event)
-  log.info("WheelButton v1.0.4 | " .. source .. " -> wheelAction=" .. direction .. " | button=" .. history_value .. " | history=true")
+  log.info("WheelButton v1.0.5 | " .. source .. " -> wheelAction=" .. direction .. " | button=" .. history_value .. " | history=true")
+end
+
+local function count_rotation_packet(device, direction, source)
+  local now = os.time()
+  local previous_direction = device:get_field(FIELD_ROTATION_DIRECTION)
+  local last_at = device:get_field(FIELD_ROTATION_LAST_AT)
+  local count = tonumber(device:get_field(FIELD_ROTATION_COUNT)) or 0
+
+  if previous_direction ~= direction or last_at == nil
+     or now < last_at or now - last_at >= ROTATION_IDLE_RESET_SECONDS then
+    count = 0
+  end
+
+  count = count + 1
+  device:set_field(FIELD_ROTATION_DIRECTION, direction)
+  device:set_field(FIELD_ROTATION_LAST_AT, now)
+  local required = required_rotation_count(device, direction)
+
+  if count >= required then
+    -- Fresh batch after every trigger: 5, 10, 15... when threshold = 5.
+    device:set_field(FIELD_ROTATION_COUNT, 0)
+    log.info("WheelButton v1.0.5 | " .. source .. " " .. direction .. " " .. count .. "/" .. required .. " -> trigger")
+    emit_wheel(device, direction, source)
+  else
+    device:set_field(FIELD_ROTATION_COUNT, count)
+    log.debug("WheelButton v1.0.5 | " .. source .. " " .. direction .. " " .. count .. "/" .. required .. " -> waiting")
+  end
 end
 
 local function wheel_handler(driver, device, zb_rx)
@@ -67,9 +140,9 @@ local function wheel_handler(driver, device, zb_rx)
 
   -- Legacy 0xFC/00 = clockwise, 0xFC/01 = counter-clockwise
   if value == 0x00 then
-    emit_wheel(device, "right", "OnOff.0xFC")
+    count_rotation_packet(device, "right", "OnOff.0xFC")
   elseif value == 0x01 then
-    emit_wheel(device, "left", "OnOff.0xFC")
+    count_rotation_packet(device, "left", "OnOff.0xFC")
   end
 end
 
@@ -78,7 +151,7 @@ end
 local function level_step_handler(driver, device, zb_rx)
   local zcl_body = zb_rx.body and zb_rx.body.zcl_body
   if zcl_body == nil then
-    log.warn("WheelButton v1.0.4 | Level.Step ignored: empty payload")
+    log.warn("WheelButton v1.0.5 | Level.Step ignored: empty payload")
     return
   end
 
@@ -105,11 +178,11 @@ local function level_step_handler(driver, device, zb_rx)
   elseif mode == 0x01 then
     direction = "left"
   else
-    log.warn("WheelButton v1.0.4 | Level.Step ignored: unknown step_mode=" .. tostring(mode))
+    log.warn("WheelButton v1.0.5 | Level.Step ignored: unknown step_mode=" .. tostring(mode))
     return
   end
 
-  emit_wheel(device, direction, "Level.Step")
+  count_rotation_packet(device, direction, "Level.Step")
 end
 
 local function emit_driver_information(device)
@@ -118,22 +191,32 @@ local function emit_driver_information(device)
       device:emit_event(driver_info.author("치즈가루"))
     end
     if driver_info.driverVersion ~= nil then
-      device:emit_event(driver_info.driverVersion("v1.0.4"))
+      device:emit_event(driver_info.driverVersion("v1.0.5"))
     end
   end
 end
 
 local function device_added(driver, device)
+  reset_rotation_sequence(device)
   device:emit_event(capabilities.button.supportedButtonValues({"pushed", "double", "held", "up", "down"}))
   device:emit_event(capabilities.button.numberOfButtons({value = 1}))
   emit_driver_information(device)
 end
 
 local function device_init(driver, device)
-  -- Make new history values available to already paired devices after an update.
+  reset_rotation_sequence(device)
+  ensure_settings_profile(device)
+  -- Keep history values available to already paired devices.
   device:emit_event(capabilities.button.supportedButtonValues({"pushed", "double", "held", "up", "down"}))
   emit_driver_information(device)
-  log.info("WheelButton v1.0.4 | ready | OnOff.Toggle=click, OnOff.0xFC=wheel, OnOff.0xFD=button, Level.Step=wheel")
+  log.info("WheelButton v1.0.5 | ready | OnOff.Toggle=click, OnOff.0xFC=wheel, OnOff.0xFD=button, Level.Step=wheel")
+end
+
+local function device_info_changed(driver, device, event, args)
+  reset_rotation_sequence(device)
+  log.info("WheelButton v1.0.5 | Settings changed | right=" ..
+    tostring(required_rotation_count(device, "right")) ..
+    " left=" .. tostring(required_rotation_count(device, "left")))
 end
 
 local function do_configure(driver, device)
@@ -159,6 +242,7 @@ local driver_template = {
   lifecycle_handlers = {
     added = device_added,
     init = device_init,
+    infoChanged = device_info_changed,
     doConfigure = do_configure
   },
   capability_handlers = {
